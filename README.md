@@ -1,4 +1,14 @@
 # DDS8558
 DDS8558 smart meter Python module
 
-Simple module. Making it public since it's not easy to get to documentation for this meter. I've provided minimal example for testing. 
+Simple module for reading Modbus data from DDS8558 smart meters. 
+
+I've provided minimal example for testing.
+
+install minimalmodbus and serial library using pip. 
+
+If you have problems with reading you might try to change 
+
+self.instrument.serial.timeout = 0.1
+
+
