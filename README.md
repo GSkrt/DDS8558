@@ -9,5 +9,5 @@ install minimalmodbus and serial library using pip.
 
 If you have problems with reading you might try to change self.instrument.serial.timeout = 0.1 to something bigger. 
 
-There is a method to reset meter. I didn't have time to test it yet. I'm not sure if it's working.
+There is a method to reset meter energy readings, I didn't have time to test that yet. I will need a bigger load. 
 
