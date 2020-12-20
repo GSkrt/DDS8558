@@ -61,6 +61,7 @@ class DDS8558_Modbus():
         return value
 
     def reset_energy_values(self):
+        #didnt test it yet..usefull for resseting values now and then...
         TotalActiveEnergy = "0x0100"
         TotalReactiveEnergy = "0x0400"
         self.instrument.write_float(int(TotalActiveEnergy, 0), 0, number_of_registers=2, byteorder=0)
