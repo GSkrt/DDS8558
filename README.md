@@ -1,4 +1,4 @@
-# DDS8558 smart meter Python module
+# DDS8558 smart meter Python Modbus RS485 module
 
 
 Simple module for reading Modbus data from DDS8558 smart meters. 
