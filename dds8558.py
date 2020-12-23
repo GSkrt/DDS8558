@@ -15,16 +15,21 @@ class DDS8558_Modbus():
         self.instrument.debug = debug
         self.instrument.clear_buffers_before_each_transaction = True
 
+        #actutal adresses of the individual registers
+        self.Voltage = "0x0000"
+        self.Current = "0x0008"
+
+
     def read_voltage(self):
         "Data register Address in hex is below in hex"
-        Voltage = "0x0000"
-        value = self.instrument.read_float(int(Voltage, 0), functioncode=4, number_of_registers=2, byteorder=0)
+
+        value = self.instrument.read_float(int(self.Voltage, 0), functioncode=4, number_of_registers=2, byteorder=0)
         return value
 
     def read_current(self):
         "Data register Address"
-        Current = "0x0008"
-        value = self.instrument.read_float(int(Current, 0), functioncode=4, number_of_registers=2, byteorder=0)
+
+        value = self.instrument.read_float(int(self.Current, 0), functioncode=4, number_of_registers=2, byteorder=0)
         return value
 
     def read_reactive_power(self):
