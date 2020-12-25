@@ -2,6 +2,7 @@
 
 # Minimal example without graphs and other stuff
 import time
+from datetime import datetime
 # import dds8558
 import DDS8558_pymodbus
 
@@ -11,12 +12,12 @@ PS_Spodaj.read_frequency()
 
 try:
     while True:
-        print(PS_Spodaj.read_active_power(), 'kW\n',
-              PS_Spodaj.read_voltage(), 'V \n',
-              PS_Spodaj.read_current(), ' A\n',
-              PS_Spodaj.read_frequency(), ' Hz\n',
-              PS_Spodaj.read_total_active_energy(), ' kWh\n',
-              PS_Spodaj.read_total_reactive_energy(), ' kVAr\n',
+        print(datetime.now(),' ', PS_Spodaj.read_active_power(), 'kW ',
+              PS_Spodaj.read_voltage(), 'V ',
+              PS_Spodaj.read_current(), ' A ',
+              PS_Spodaj.read_frequency(), ' Hz ',
+              PS_Spodaj.read_total_active_energy(), ' kWh ',
+              PS_Spodaj.read_total_reactive_energy(), ' kVAr ',
               'cos(fi)=', PS_Spodaj.read_power_factor()
               )
         time.sleep(0.1)  # sleep for 1 second and then read data again
