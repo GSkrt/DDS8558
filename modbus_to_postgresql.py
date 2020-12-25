@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 # Make this run as a service on raspberry pi... (check systemctl functionality if running Linux OS)
-
+from systemd import journal
 import psycopg2
 import time
 from datetime import datetime
@@ -20,8 +20,10 @@ try:
                                   port="5432",
                                   database="postgres")
     cursor = connection.cursor()
-except (Exception, Error) as error:
-    print("Error while connecting to PostgreSQL", error)
+except Exception as error:
+
+    journal.write("Oops! An exception has occured:", error)
+    journal.write("Exception TYPE:", type(error))
 
 create_table_sql = """create table if not exists public.meritve_stevec
 (t timestamp,
@@ -63,4 +65,4 @@ except KeyboardInterrupt:
     if connection:
         cursor.close()
         connection.close()
-        print("PostgreSQL connection is closed")
+        journal.write("PostgreSQL connection is closed")
