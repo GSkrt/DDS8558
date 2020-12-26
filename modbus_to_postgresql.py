@@ -25,6 +25,8 @@ except Exception as error:
     journal.write("Oops! An exception has occured:", error)
     journal.write("Exception TYPE:", type(error))
 
+#paralel data insert version
+
 create_table_sql = """create table if not exists public.meritve_stevec
 (t timestamp,
 ident text,
