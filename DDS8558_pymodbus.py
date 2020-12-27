@@ -12,11 +12,11 @@ class DDS8558_Modbus_pymodbus:
         self.voltage = 0x0000
         self.current = 0x0008
         self.activePower = 0x0012
-        self.reactivePower = 0x001A
+        self.reactivePower = 0x001A # TODO: figure out why I can't read reactive power
         self.PowerFactor = 0x002A
         self.Frequency = 0x0036
         self.totalActiveEnergy = 0x0100
-        self.totalReactiveEnergy = 0x0400
+        self.totalReactiveEnergy = 0x0400 # TODO: again, no reactive energy
         self.modbus_address = modbus_address
         self.client = ModbusClient(method='rtu', port=serial_device, baudrate=baudrate, retries=1000, timeout=0.1,
                                    parity='E', stopbits=1)
