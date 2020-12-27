@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 
 # Make this run as a service on raspberry pi... (check systemctl functionality if running Linux OS)
+# this version is for those who want to access database with typical t,valu,value, value,... visualisation app for example
+# spreadsheets. If you have multiple measurements this format is not suitable for storing time series !!!
+
 from systemd import journal
 import psycopg2
 import time
@@ -27,7 +30,7 @@ except Exception as error:
 
 #paralel data insert version
 
-create_table_sql = """create table if not exists public.meritve_stevec
+create_table_sql = """create table if not exists public.mesurements_sm
 (t timestamp,
 ident text,
 voltage float,
@@ -38,7 +41,7 @@ reactive_energy float,
 cosfi float )"""
 
 sql_insert = """
-INSERT INTO public.meritve_stevec
+INSERT INTO public.measurements_sm
 (t, ident, voltage, current, frequency, energy, reactive_energy, cosfi)
 VALUES(%s, %s , %s, %s, %s, %s, %s, %s);
 """
