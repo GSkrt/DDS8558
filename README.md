@@ -16,9 +16,11 @@ There are two different services:
 - serial write
 
 The main difference between this two is in table format. Parallel module assumes that all values are stored in a single row for each modbus register. 
-[time, value, value, value]
+
+*[time, value, value, value,..]*
 The serial is more common way of storing time series even though it's a bit more difficult to transpose values directly in database tables. 
-[time, text_id, value]
+
+*[time, text_id, value]*
 
 I didn't go trough packaging and pip yet since this is a simple module just holding modbus configuration information.
 If you came here you probably know what you are doing. 
