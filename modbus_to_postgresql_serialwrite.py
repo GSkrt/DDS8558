@@ -17,8 +17,8 @@ from datetime import datetime
 import DDS8558_pymodbus
 
 mb_address = 0x01
-PS_Spodaj = DDS8558_pymodbus.DDS8558_Modbus_pymodbus(serial_device='/dev/ttyUSB0', modbus_address=mb_address,
-                                                     baudrate=9600)
+SmartMeter = DDS8558_pymodbus.DDS8558_Modbus_pymodbus(serial_device='/dev/ttyUSB0', modbus_address=mb_address,
+                                                      baudrate=9600)
 
 try:
     # Connect to an existing database (or install a new one)
@@ -53,38 +53,38 @@ cursor.execute(create_table_sql)
 try:
     while True:
         # get ative power
-        power = PS_Spodaj.read_active_power()
+        power = SmartMeter.read_active_power()
         datetime_var = datetime.now()
         cursor.execute(sql_insert, (datetime_var, str(mb_address) + ' power_W', power))
 
         # get reactive power
-        power = PS_Spodaj.read_reactive_power()
+        power = SmartMeter.read_reactive_power()
         datetime_var = datetime.now()
         cursor.execute(sql_insert, (datetime_var, str(mb_address) + ' power_reactive_VAr', power))
 
         # we read time again to make it a bit more accurate tho, system time is a bad way to get a
         # timing for measurements...
-        v = PS_Spodaj.read_voltage()
+        v = SmartMeter.read_voltage()
         datetime_var = datetime.now()
         cursor.execute(sql_insert, (datetime_var, str(mb_address) + ' voltage_V', v))
         # current
-        current = PS_Spodaj.read_current()
+        current = SmartMeter.read_current()
         datetime_var = datetime.now()
         cursor.execute(sql_insert, (datetime_var, str(mb_address) + ' current_A', current))
         # frequency
-        frequency = PS_Spodaj.read_frequency()
+        frequency = SmartMeter.read_frequency()
         datetime_var = datetime.now()
         cursor.execute(sql_insert, (datetime_var, str(mb_address) + ' frequency_Hz', frequency))
         # energy
-        energy = PS_Spodaj.read_total_active_energy()
+        energy = SmartMeter.read_total_active_energy()
         datetime_var = datetime.now()
         cursor.execute(sql_insert, (datetime_var, str(mb_address) + ' energy_kWh', energy))
         # reactive_energy
-        reactive_energy = PS_Spodaj.read_total_reactive_energy()
+        reactive_energy = SmartMeter.read_total_reactive_energy()
         datetime_var = datetime.now()
         cursor.execute(sql_insert, (datetime_var, str(mb_address) + ' reactive_energy_kVAr', reactive_energy))
         # power factor
-        cosfi = PS_Spodaj.read_power_factor()
+        cosfi = SmartMeter.read_power_factor()
         datetime_var = datetime.now()
         cursor.execute(sql_insert, (datetime_var, str(mb_address) + ' cosfi', cosfi))
 
