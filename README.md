@@ -1,4 +1,4 @@
-# DDS8558 smart meter Python Modbus RS485 module and some simple code to make a modbus->postgresql service (examples) 
+# DDS8558 smart meter Python Modbus RS485 module and some simple code to make a modbus >>> postgresql service (examples) 
 
 
 Simple module for Modbus data connection to DDS8558 smart meters. What you need is a serial RS485 interface. You can get "cheap" USB->RS485 dongles online. 
