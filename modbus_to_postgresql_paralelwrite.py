@@ -56,7 +56,7 @@ try:
         current_A = PS_Spodaj.read_current()
         f = PS_Spodaj.read_frequency()
         W = PS_Spodaj.read_total_active_energy()
-        Q = PS_Spodaj.read_total_reactive_energy()
+        #Q = PS_Spodaj.read_total_reactive_energy()
         cosfi = PS_Spodaj.read_power_factor()
 
         # dump data to postgresql database

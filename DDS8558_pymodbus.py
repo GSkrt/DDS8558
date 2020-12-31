@@ -41,6 +41,7 @@ class DDS8558_Modbus_pymodbus:
         value = decoder.decode_32bit_float()
         return value
 
+    # reactive power is supposed to be there but based on testing it returns real power.
     def read_reactive_power(self):
         """Data register Address"""
         result = self.client.read_input_registers(address=self.reactivePower, count=2, unit=self.modbus_address)
@@ -48,12 +49,15 @@ class DDS8558_Modbus_pymodbus:
         value = decoder.decode_32bit_float()
         return value
 
-    def read_active_power(self):
-        result = self.client.read_input_registers(address=self.activePower, count=2, unit=self.modbus_address)
-        decoder = BinaryPayloadDecoder.fromRegisters(result.registers, Endian.Big, wordorder=Endian.Big)
-        value = decoder.decode_32bit_float()
-        return value
 
+    #even though there is a register on pdf supplied this function does not work ?!
+    #def read_active_power(self):
+    #    result = self.client.read_input_registers(address=self.activePower, count=2, unit=self.modbus_address)
+    #    decoder = BinaryPayloadDecoder.fromRegisters(result.registers, Endian.Big, wordorder=Endian.Big)
+    #    value = decoder.decode_32bit_float()
+    #    return value
+
+    #power factor works ?!
     def read_power_factor(self):
         result = self.client.read_input_registers(address=self.PowerFactor, count=2, unit=self.modbus_address)
         decoder = BinaryPayloadDecoder.fromRegisters(result.registers, Endian.Big, wordorder=Endian.Big)
@@ -67,12 +71,13 @@ class DDS8558_Modbus_pymodbus:
         value = decoder.decode_32bit_float()
         return value
 
-    def read_total_reactive_energy(self):
-        """Read total active energy"""
-        result = self.client.read_input_registers(address=self.totalReactiveEnergy, count=2, unit=self.modbus_address)
-        decoder = BinaryPayloadDecoder.fromRegisters(result.registers, Endian.Big, wordorder=Endian.Big)
-        value = decoder.decode_32bit_float()
-        return value
+    # same as reactive power there is nothing in this register
+    #def read_total_reactive_energy(self):
+    #    """Read total active energy"""
+    #    result = self.client.read_input_registers(address=self.totalReactiveEnergy, count=2, unit=self.modbus_address)
+    #    decoder = BinaryPayloadDecoder.fromRegisters(result.registers, Endian.Big, wordorder=Endian.Big)
+    #    value = decoder.decode_32bit_float()
+    #    return value
 
     def read_frequency(self):
         """Read system frequency (not sure why would you need that though) """
