@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
-# Minimal example without graphs and other stuff
+# Minimal example without graphs, database capture and other stuff...
+
 import time
 from datetime import datetime
 # import dds8558
