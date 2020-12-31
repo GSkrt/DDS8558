@@ -31,6 +31,8 @@ If you have problems with reading data from modbus you might try to change self.
 Check example file for more explanation, in general I recommend using pymodbus module.
 
 There is also example of modbus->postgresql python module that I run on raspberry pi as a service to capture data.
+If you want some aggregation of energy (which is why we usualy install smart meters) you could use provided sql to init views 
+in the database.
 
 If you have some interesting Modbus devices lying around and want to have some python code around them contact me.
 
