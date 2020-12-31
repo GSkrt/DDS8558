@@ -1,4 +1,8 @@
-/*use date trunc for public */ 
+ /************************************************************
+  * 
+  *  	Monthly energy aggregation view (Materialized !!)
+  * 
+  **********************************************************/
 
 drop materialized view public.monthly_energy ; 
 create materialized view if not exists public.monthly_energy as 
@@ -15,6 +19,13 @@ where
 )t
 group by 
 month_date 
+
+
+ /************************************************************
+  * 
+  *  	Daily energy aggregation view (Materialized !!)
+  * 
+  **********************************************************/
 
 
 drop materialized view public.daily_energy ;
@@ -37,37 +48,15 @@ day
 
 
 
-refresh materialized view public.monthly_energy 
-select * from public.monthly_energy me 
-
-select * from public.daily_energy de 
-
 
 
 --limit 100
 
- /******************************************
+ /************************************************************
   * 
-  *  	Hourly energy time 
+  *  	Hourly energy aggregation view (Materialized !!)
   * 
-  *****************************************/
-
-create materialized view if not exists public.hourly_energy as 
-select datetime_hour , max(value)- min(value) as w_hour_kwh
-from 
-(
-select
-	date_trunc('hour',t) as datetime_hour,
-	--txtid,
-	value
-from
-	public.measurements_serial ms
-where
-	txtid like '%energy_kWh%'
-)t
-group by 
-datetime_hour
-
+  **********************************************************/
 
 
 create materialized view if not exists public.hourly_energy as 
@@ -87,15 +76,18 @@ group by
 datetime_hour
 
  
-refresh materialized view public.monthly_energy ; 
-refresh materialized view public.daily_energy ;
-refresh materialized view public.hourly_energy ;
-refresh materialized view public.fifteenm_energy ; 
+
 
 
 
 select * from public.hourly_energy he 
 
+
+ /************************************************************
+  * 
+  *  15 min aggregation view (Materialized !!)
+  * 
+  **********************************************************/
 
 
 
@@ -118,6 +110,16 @@ group by
 	tabela.datetime_hour
 
 	
+ /************************************************************
+  * 
+  *  	Refresh and select....
+  * 
+  **********************************************************/
+	
+refresh materialized view public.monthly_energy ; 
+refresh materialized view public.daily_energy ;
+refresh materialized view public.hourly_energy ;
+refresh materialized view public.fifteenm_energy ; 
 
 select
 	datetime_hour as t,
