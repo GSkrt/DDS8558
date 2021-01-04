@@ -19,7 +19,7 @@ There are two different services:
 Parralel: 
 *[time, value, value, value,..]*
 
-The serial format is more common way of storing time series even though it's a bit more difficult to transpose values directly in database tables. 
+The serial format is more common way of storing time series simply because you can scale table for multiple timeseries. 
 
 Serial: 
 *[time, text_id, value]*
